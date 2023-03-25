@@ -24,6 +24,32 @@ async function seed() {
     },
   });
 
+  const posts = [
+    {
+      slug: "my-first-post",
+      title: "My first post",
+      body: "This is my first post",
+    },
+    {
+      slug: "my-second-post",
+      title: "My second post",
+      body: "This is my second post",
+    },
+    {
+      slug: "my-third-post",
+      title: "My third post",
+      body: "This is my third post",
+    }
+  ]
+
+  for (const post of posts) {
+    await prisma.post.upsert({
+      where: { slug: post.slug},
+      update: post,
+      create: post
+    });
+  }
+
   await prisma.note.create({
     data: {
       title: "My first note",
