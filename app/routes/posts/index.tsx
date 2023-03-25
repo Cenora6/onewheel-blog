@@ -3,12 +3,14 @@ import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { getPostListings } from "~/models/post.server";
 
-
 export default function PostsRoute() {
   const { posts } = useLoaderData<LoaderData>()
   return (
     <main>
       <h1>Posts</h1>
+      <Link to="admin" className="text-red-600 underline">
+        Admin
+      </Link>
       <ul>
         {posts.map(post => {
           return (
